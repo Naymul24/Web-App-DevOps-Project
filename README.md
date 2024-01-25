@@ -39,6 +39,19 @@ While the feature was reverted due to specific considerations, the documentation
 
 ## Getting Started
 
+- Docker Containerisation
+
+This involved containerizing the application using Docker. This process facilitates seamless deployment and scalability by encapsulating the application and its dependencies into isolated containers.
+
+- **Containerisation Process:**
+Dockerfile Creation:
+- Dockerfile was created containing all the commands the user requires to call on the command line to assemble an image including for pulling necessary base images, setting up the working directory, and installing dependencies.
+Docker Build:
+- The application was packaged into the Docker image by copying relevant files and directories.
+Send to the Hub:
+- The image was tagged and pushed to the hub to be opened by the user.
+
+
 ### Prerequisites
 
 For the application to succesfully run, you need to install the following packages:
