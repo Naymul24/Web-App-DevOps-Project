@@ -26,6 +26,17 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 
 - **Data Validation:** Ensure data accuracy and completeness with required fields, date restrictions, and card number validation.
 
+- **Delivery Date:** Adding Delivery Date Information Column
+
+The app.py was modified alongside the orders.html file to incorporate a new feature – the addition of a delivery date information column to the application. The changes were made to enhance the functionality of the application and provide users with valuable information about delivery timelines.
+
+Steps:
+- A new feature branch was created to implement the additional coding. This branch isolated the code changes required to the include the delivery date column
+- Both files were modified so a delivery date column was added. 
+- The file was then reverted back to without the delivery date column as this was not needed anymore using the commit hash.
+
+While the feature was reverted due to specific considerations, the documentation should stress the potential for future use and the importance of understanding the feature for ongoing development or enhancements.
+
 ## Getting Started
 
 ### Prerequisites
