@@ -10,6 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- checkout: self
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
@@ -23,4 +24,4 @@ steps:
     repository: 'naymul24/webapp'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: 'latest'
+    tags: 'latest-v2'
