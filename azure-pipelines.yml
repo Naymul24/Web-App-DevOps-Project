@@ -14,5 +14,5 @@ steps:
     containerRegistry: 'DockerHubConnection'
     repository: 'naymul24/webapp'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: 'Web-App-DevOps-Project/Dockerfile'
     tags: 'latest'
