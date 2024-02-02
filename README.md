@@ -32,16 +32,19 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 
 The initial implementation involved the addition of delivery columns to enhance specific functionalities in the application. However, the feature was reverted due to its non-essential nature. Below is a detailed guide on how the feature worked and its potential utilisation.
 
-The app.py was modified alongside the orders.html file to incorporate a new feature – the addition of a delivery date information column to the application. The changes were made to enhance the functionality of the application and provide users with valuable information about delivery timelines.
+The app.py was modified alongside the orders.html file to incorporate a new feature – the addition of a delivery date information column to the application. The changes were made to enhance the functionality of the application and provide users with valuable information about delivery timelines. Now the company can also monitor the dates the deliveries have been made and ensure fulfilment.
 
 *Developers' Guide:*
 - Adding the Delivery Column
-1. The app.py file was 
+1. Create a new feature branch to implement the additional coding. This branch isolates the code changes required to the include the delivery date column. Ensure all following steps are tracked via git
+2. The app.py file was modified. Update the app.py file with the following code as seen in this file [CodeChanges] (https://github.com/Naymul24/Web-App-DevOps-Project/blob/main/code_changes.txt)
+3. The orders.html file was modified to add the additional column to the user web page. Update the orders.html file with the following code as seen in this file [CodeChanges] (https://github.com/Naymul24/Web-App-DevOps-Project/blob/main/code_changes.txt)
 
-Steps:
-- A new feature branch was created to implement the additional coding. This branch isolated the code changes required to the include the delivery date column
-- Both files were modified so a delivery date column was added. 
-- The file was then reverted back to without the delivery date column as this was not needed anymore using the commit hash.
+- Removing Delivery Columns
+1. The feature was then not necessary so was removed by utilising the tracked code by git. Create a new feature branch to remove the additional coding.
+2. Find the commit hash of the specific change to revert. 
+3. Revert back to that state using the git revert command
+
 
 While the feature was reverted due to specific considerations, the documentation should stress the potential for future use and the importance of understanding the feature for ongoing development or enhancements.
 
