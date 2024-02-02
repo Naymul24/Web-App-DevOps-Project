@@ -65,7 +65,7 @@ This involved containerizing the application using Docker. This process facilita
 
 To deploy the application onto a Kubernetes cluster, we have decided to implement Infrastructure as Code using Terraform. The main reasons for deployment to Kubernetes included the ability for application scalability as well as it providing a unified solution for automating the deployment, scaling, and management of the containerised application. It ensures that our application can effortlessly scale in response to varying workloads, enhancing both performance and user experience.
 
-To do this the infrastruture setup had to be set, which ensured the Kubernetes cluster's seamless operation and secure communication. The following steps were taken:
+To do this, the infrastruture setup had to be set, which ensured the Kubernetes cluster's seamless operation and secure communication. The following steps were taken:
 
 ### Defining Network Services with IaC
 1. The Terraform project and modules were created to organise infrastructure code.
@@ -77,6 +77,11 @@ To do this the infrastruture setup had to be set, which ensured the Kubernetes c
 
 
 ### Defining an AKS Cluster with IaC
+1. The Terraform files for the aks cluster were developed including the main.tf, variable.tf and output.tf files.
+2. Firstly, 6 input variables were defined in the variable.tf files. These included the aks cluster name, cluster location, DNS prefix, the Kubernetes version, the client id and the client secret. Additionally, the output variables from the networking module were defined as the input varibales for the cluster.
+3. Then in the main.tf file the necessary Azure resources were defined for provisioning an AKS cluster.
+4. Lastly the output.tf files were created including the cluster name, cluster id and kubernetes configuration file.
+5. The aks cluster module was then intialised.
 
 ### Prerequisites
 
