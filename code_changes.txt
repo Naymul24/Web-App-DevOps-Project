@@ -1,0 +1,73 @@
+1. Modify the Order class
+Open the app.py file and locate the Order class. Add the delivery_date column to the class attributes. It should look something like this:
+
+class Order(Base):
+    __tablename__ = 'orders'
+    date_uuid = Column('date_uuid', String, primary_key=True)
+    # ... other columns ...
+    delivery_date = Column('Delivery Date', DateTime)  # Add this line
+
+2. Update the app.route for adding an order
+In the route to add orders, app.route, update the form to include the deliver_date field. It should look something like this:
+
+@app.route('/add_order', methods=['POST'])
+def add_order():
+    date_uuid = request.form.get('date_uuid')
+    # ... other form inputs ...
+    delivery_date = request.form['delivery_date']  # Add this line
+
+In the route to add orders, app.route, update the new_order variable as follows:
+
+# Create a new order object using the form data
+new_order = Order(
+    date_uuid=date_uuid,
+    user_id=user_id,
+    card_number=card_number,
+    store_code=store_code,
+    product_code=product_code,
+    product_quantity=product_quantity,
+    order_date=order_date,
+    shipping_date=shipping_date
+    delivery_date=delivery_date# Add this line
+)
+
+3. Update order.html template
+In the order.html template, update the table header and rows to include the delivery_date column. Modify the <th> elements and the {% for order in orders %} loop accordingly. It should look like this:
+
+<table>
+    <tr>
+        <th>Date UUID</th>
+        <th>User ID</th>
+        <th>Card Number</th>
+        <th>Store Code</th>
+        <th>Product Code</th>
+        <th>Product Quantity</th>
+        <th>Order Date</th>
+        <th>Shipping Date</th>
+        <th>Delivery Date</th>  <!-- Add this line -->
+    </tr>
+    {% for order in orders %}
+        <tr>
+            <td>{{ order.date_uuid }}</td>
+            <td>{{ order.user_id }}</td>
+            <td>{{ order.card_number }}</td>
+            <td>{{ order.store_code }}</td>
+            <td>{{ order.product_code }}</td>
+            <td>{{ order.product_quantity }}</td>
+            <td>{{ order.order_date }}</td>
+            <td>{{ order.shipping_date }}</td>
+            <td>{{ order.delivery_date }}</td>  <!-- Add this line -->
+        </tr>
+    {% endfor %}
+</table>
+
+In the order.html template, modify the <form> element to include an input field for the delivery_date column, as seen below:
+
+<form method="post" action="/add_order">
+    <!-- ... other form inputs ... -->
+    <label for="delivery_date">Delivery Date:</label> <!-- Add this line -->
+    <input type="date" id="delivery_date" name="delivery_date"><br><br>  <!-- Add this line -->
+    <input type="submit" value="Add Order">
+</form>
+
+That's all the changes that will allow all the functionality of the web application to support a new column delivery_date.
