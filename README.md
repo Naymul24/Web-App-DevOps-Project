@@ -48,19 +48,21 @@ The app.py was modified alongside the orders.html file to incorporate a new feat
 
 While the feature was reverted due to specific considerations, the documentation should stress the potential for future use and the importance of understanding the feature for ongoing development or enhancements.
 
-## Getting Started
+### Containerisation with Docker
 
 - Docker Containerisation
 
 This involved containerizing the application using Docker. This process facilitates seamless deployment and scalability by encapsulating the application and its dependencies into isolated containers.
 
 - **Containerisation Process:**
-Dockerfile Creation:
+1. Dockerfile Creation:
 - Dockerfile was created containing all the commands the user requires to call on the command line to assemble an image including for pulling necessary base images, setting up the working directory, and installing dependencies.
-Docker Build:
+2. Docker Build:
 - The application was packaged into the Docker image by copying relevant files and directories.
-Send to the Hub:
+3. Send to the Hub:
 - The image was tagged and pushed to the hub to be opened by the user.
+
+
 
 
 ### Prerequisites
