@@ -71,7 +71,7 @@ To do this, the infrastruture setup had to be set, which ensured the Kubernetes 
 
 ### Defining Network Services with IaC
 1. The Terraform project and modules were created to organise infrastructure code.
-2. The initial set of Terraform files for networking services were developed including the main.tf, variable.tf and output.tf files.
+2. The initial set of Terraform files for networking services were developed including the main.tf, variable.tf and output.tf files inside the netwworking module directory.
 3. First the 3 input variables were defined in the variable.tf files. These included the resource group name, location and a virtual network address space.
    - A resource_group_name variable that will represent the name of the Azure Resource Group where the networking resources will be deployed in.
    - A location variable that specifies the Azure region where the networking resources will be deployed to.
@@ -87,18 +87,28 @@ To do this, the infrastruture setup had to be set, which ensured the Kubernetes 
 
 
 ### Defining an AKS Cluster with IaC
-1. The Terraform files for the aks cluster were developed including the main.tf, variable.tf and output.tf files.
+1. The Terraform files for the aks cluster were developed including the main.tf, variable.tf and output.tf files inside the aks-cluster module directory.
 2. Firstly, 6 input variables were defined in the variable.tf files. These included the aks cluster name, cluster location, DNS prefix, the Kubernetes version, the client id and the client secret. Additionally, the output variables from the networking module were defined as the input varibales for the cluster.
+   - A aks_cluster_name variable that represents the name of the AKS cluster you wish to create
+   - A cluster_location variable that specifies the Azure region where the AKS cluster will be deployed to
+   - A dns_prefix variable that defines the DNS prefix of cluster
+   - A kubernetes_version variable that specifies which Kubernetes version the cluster will use
+   - A service_principal_client_id variable that provides the Client ID for the service principal associated with the cluster
+   - A service_principal_secret variable that supplies the Client Secret for the service principal
 3. Then in the main.tf file the necessary Azure resources were defined for provisioning an AKS cluster.
 4. Lastly the output.tf files were created including the cluster name, cluster id and kubernetes configuration file.
+   - A aks_cluster_name variable that will store the name of the provisioned cluster
+   - A aks_cluster_id variable that will store the ID of the cluster
+   - A aks_kubeconfig variable that will capture the Kubernetes configuration file of the cluster. This file is essential for interacting with and managing the AKS cluster using kubectl.
 5. The aks cluster module was then intialised.
 
 ### Creating an AKS Cluster with IaC
-1. The Terraform files for the aks cluster were developed including the main.tf, variable.tf and output.tf files.
-2. Firstly, 6 input variables were defined in the variable.tf files. These included the aks cluster name, cluster location, DNS prefix, the Kubernetes version, the client id and the client secret. Additionally, the output variables from the networking module were defined as the input varibales for the cluster.
-3. Then in the main.tf file the necessary Azure resources were defined for provisioning an AKS cluster.
-4. Lastly the output.tf files were created including the cluster name, cluster id and kubernetes configuration file.
-5. The aks cluster module was then intialised.
+1. A main.tf file was made in the root terraform directory. Within this file the Azure provider block was provided to enable authentication to Azure using your service principal credentials.
+2. In the variable.tf file, the client_id and client_secret arguments were defined.
+3. The networking module was then integrated into the project's main configuration. This integration will ensure that the networking resources previously defined in their respective module are included, and therefore accessible in the main project.
+4. The cluster module was also integrated into the project's main configuration. This step connects the AKS cluster specifications to the main project, as well as allowing you to provision the cluster within the previously defined networking infrastructure. 
+5. The main Terraform project was initialised by using the following command: 'terraform init'. Once initialised it was time to apply the configurations. Before doing so the command 'terraform plan' was used to view the process before commiting. Finally once set the command terraform apply was used This will initiate the creation of the defined infrastructure, including the networking resources and AKS cluster.
+6. A .gitignore file was created to add the resultant state file to avoid exposing any secrets.
 
 ### Prerequisites
 
