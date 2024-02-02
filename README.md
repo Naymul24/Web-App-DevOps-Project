@@ -28,7 +28,7 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 
 ### Additional Features
 
-- **Delivery Date:** Adding Delivery Date Information Column
+**Delivery Date: Adding Delivery Date Information Column**
 
 The initial implementation involved the addition of delivery columns to enhance specific functionalities in the application. However, the feature was reverted due to its non-essential nature. Below is a detailed guide on how the feature worked and its potential utilisation.
 
@@ -53,13 +53,13 @@ While the feature was reverted due to specific considerations, the documentation
 
 This involved containerizing the application using Docker. This process facilitates seamless deployment and scalability by encapsulating the application and its dependencies into isolated containers.
 
-- **Containerisation Process:**
-**Dockerfile Creation:**
-Dockerfile was created containing all the commands the user requires to call on the command line to assemble an image including for pulling necessary base images, setting up the working directory, and installing dependencies.
-**Docker Build:**
-The application was packaged into the Docker image by copying relevant files and directories.
-**Send to the Hub:**
-The image was tagged and pushed to the hub to be opened by the user.
+**Containerisation Process:**
+- **Dockerfile Creation:**
+1. Dockerfile was created containing all the commands the user requires to call on the command line to assemble an image including for pulling necessary base images, setting up the working directory, and installing dependencies.
+- **Docker Build:**
+2. The application was packaged into the Docker image by copying relevant files and directories.
+- **Send to the Hub:**
+3. The image was tagged and pushed to the hub to be opened by the user.
 
 
 
