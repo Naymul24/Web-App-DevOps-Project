@@ -107,6 +107,28 @@ def add_order():
 
     return redirect(url_for('display_orders'))
 
+from azure.identity import ManagedIdentityCredential
+from azure.keyvault.secrets import SecretClient
+
+# Replace these values with your Key Vault details
+key_vault_url = "https://NaymulKeyVault.vault.azure.net/"
+
+# Set up Azure Key Vault client with Managed Identity
+credential = ManagedIdentityCredential()
+secret_client = SecretClient(vault_url=key_vault_url, credential=credential)
+
+# Access the secret values from Key Vault
+secret1 = secret_client.get_secret("Secret-Name")
+secret2 = secret_client.get_secret("Secret-Username")
+secret3 = secret_client.get_secret("Secret-Password")
+secret4 = secret_client.get_secret("Database-Name")
+
+# Access the secret values
+secret_value1 = secret1.value
+secret_value2 = secret2.value
+secret_value3 = secret3.value
+secret_value4 = secret4.value
+
 # run the app
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
