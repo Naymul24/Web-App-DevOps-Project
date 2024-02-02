@@ -73,12 +73,27 @@ To do this, the infrastruture setup had to be set, which ensured the Kubernetes 
 1. The Terraform project and modules were created to organise infrastructure code.
 2. The initial set of Terraform files for networking services were developed including the main.tf, variable.tf and output.tf files.
 3. First the 3 input variables were defined in the variable.tf files. These included the resource group name, location and a virtual network address space.
+   - A resource_group_name variable that will represent the name of the Azure Resource Group where the networking resources will be deployed in.
+   - A location variable that specifies the Azure region where the networking resources will be deployed to.
+   - A vnet_address_space variable that specifies the address space for the Virtual Network (VNet) that you will create later in the main configuration file of this module.
 4. Then in the main.tf file the essential networking resources for an AKS cluster were defined including an Azure Resource Group, a VNet, two subnets and a Network Security Group.
 5. Lastly the output.tf files were created including the networking resources for the AKS cluster
+   - A vnet_id variable that will store the ID of the previously created VNet.
+   - A control_plane_subnet_id variable that will hold the ID of the control plane subnet within the VNet. 
+   - A worker_node_subnet_id variable that will store the ID of the worker node subnet within the VNet. 
+   - A networking_resource_group_name variable that will provide the name of the Azure Resource Group where the networking resources were provisioned in. 
+   - A aks_nsg_id variable that will store the ID of the Network Security Group (NSG). 
 6. The networking module was intialised.
 
 
 ### Defining an AKS Cluster with IaC
+1. The Terraform files for the aks cluster were developed including the main.tf, variable.tf and output.tf files.
+2. Firstly, 6 input variables were defined in the variable.tf files. These included the aks cluster name, cluster location, DNS prefix, the Kubernetes version, the client id and the client secret. Additionally, the output variables from the networking module were defined as the input varibales for the cluster.
+3. Then in the main.tf file the necessary Azure resources were defined for provisioning an AKS cluster.
+4. Lastly the output.tf files were created including the cluster name, cluster id and kubernetes configuration file.
+5. The aks cluster module was then intialised.
+
+### Creating an AKS Cluster with IaC
 1. The Terraform files for the aks cluster were developed including the main.tf, variable.tf and output.tf files.
 2. Firstly, 6 input variables were defined in the variable.tf files. These included the aks cluster name, cluster location, DNS prefix, the Kubernetes version, the client id and the client secret. Additionally, the output variables from the networking module were defined as the input varibales for the cluster.
 3. Then in the main.tf file the necessary Azure resources were defined for provisioning an AKS cluster.
