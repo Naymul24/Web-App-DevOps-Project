@@ -110,6 +110,22 @@ To do this, the infrastruture setup had to be set, which ensured the Kubernetes 
 5. The main Terraform project was initialised by using the following command: 'terraform init'. Once initialised it was time to apply the configurations. Before doing so the command 'terraform plan' was used to view the process before commiting. Finally once set the command terraform apply was used This will initiate the creation of the defined infrastructure, including the networking resources and AKS cluster.
 6. A .gitignore file was created to add the resultant state file to avoid exposing any secrets.
 
+### Kubernetes Deployment to AKS
+Now that the infrastructure is in place, the containerised application can be deployed onto Kubernetes by following these instructions:
+1. A Kubernetes manifest file was created, named application-manifest.yaml. Inside this file the necessary Deployment resource was defined, which will help deploy the containerised web application onto the Terraform-provisioned AKS cluster. The manifest should include the following:
+   - Define a Deployment named flask-app-deployment that acts as a central reference for managing the containerised application.
+   - Specify that the application should concurrently run on two replicas within the AKS cluster, allowing for scalability and high availability.
+   - Within the selector field, use the matchLabels section to define a label that uniquely identifies your application. For example, you could use the label app: flask-app. This label will allow Kubernetes to identify which pods the Deployment should manage.
+   - In the metadata section, define labels for the pod template. Reiterate the use of the label app: flask-app. This label is used to mark the pods created by the Deployment, establishing a clear connection between the pods and the application being managed.
+   - Configure the manifest to point to the specific container housing the application, which should be already hosted on Docker Hub. This ensures that the correct container image is utilized for deployment.
+   - Expose port 5000 for communication within the AKS cluster. This port servers as the gateway for accessing the application's user interface, as defined in the application code
+   - Implement the Rolling Updates deployment strategy, facilitating seamless application updates. Ensure that, during updates, a maximum of one pod deploys while one pod becomes temporarily unavailable, maintaining application availability.   
+2. A Kubernetes Service manifest was added to the existing application-manifest.yaml to facilitate internal communication within the AKS cluster. This manifest should achieve the following key objectives:
+   - Define a service named flask-app-service to act as a reference for routing internal communication
+   - Ensure that the selector matches the labels (app: flask-app) of the previously defined pods in the Deployment manifest. This alignment guarantees that the traffic is efficiently directed to the appropriate pods, maintaining seamless internal communication within the AKS cluster.
+   - Configure the service to use TCP protocol on port 80 for internal communication within the cluster. The targetPort should be set to 5000, which corresponds to the port exposed by your container.
+   - Set the service type to ClusterIP, designating it as an internal service within the AKS cluster
+3. 
 ### Prerequisites
 
 For the application to succesfully run, you need to install the following packages:
