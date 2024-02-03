@@ -173,7 +173,7 @@ Our CI/CD pipeline automates the deployment of the application, ensuring an effi
 
 ### CI/CD Pipeline with Azure DevOps
 
-Azure DevOps was used to automate the deployment of the application. The pipeline both automates the containerisation and deployment process, such that every time a new feature is added to the application, it will trigger the automatic build of an updated Docker Image, its release to Docker hub, and the deployment of the updated containers to the Kubernetes cluster. The following steps were taken for the CI/CD pipeline build:
+The following steps were taken for the CI/CD pipeline build:
 1. A new Azure DevOps project was created, serving as the foundation for our pipeline setup. This was done by logging into Azure DevOps with the associated email account.
 2. For efficient version control, GitHub was setup to be the source repository, where our application code resides. Using the Starter Pipeline template, the pipeline setup was initated, laying the groundwork for subsequent customisation.
 3. To seamlessly integrate our CI/CD pipeline with Docker Hub, a service connection was established. This involved creating a personal access token on Docker Hub, configuring an Azure DevOps service connection, and verifying its successful setup.
