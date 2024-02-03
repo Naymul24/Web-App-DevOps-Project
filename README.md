@@ -146,6 +146,8 @@ Azure DevOps was used to automate the deployment of the application. The pipelin
 6. The CI/CD pipeline configuration was modified to include the Deploy to Kubernetes task, leveraging the deployment manifest in the application repository. The ASK connection established earlier facilitated the automatic deployment of the application to the AKS cluster.
 7. The functionality of the CI/CD pipeline was rigorously tested and validated. Pod status within the cluster was monitored to confirm correct creation. To secure access to the application running on AKS, port forwarding via 'kubectl' was initiated. Testing ensued, ensuring the application operated seamlessly, validating the effectiveness of the CI/CD pipeline.
 
+Our CI/CD pipeline is a robust and automated solution that enhances the development and deployment workflow. The documentation above outlines the key configurations, connections, and validation steps performed to ensure the reliability of our continuous integration and continuous deployment process.
+
 
 
 
