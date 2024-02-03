@@ -169,6 +169,9 @@ As part of the DevOps pipeline setup for our company's application, the responsi
    - Container Insights was enabled on the cluster.
 2. Metrics Explorer Charts
 The following charts were created: 
+
+![AKS cluster insights](cluster-insights.png)
+
    - Average Node CPU Usage: This chart allows you to track the CPU usage of your AKS cluster's nodes. Monitoring CPU usage helps ensure efficient resource allocation and detect potential performance issues.
    - Average Pod Count: This chart displays the average number of pods running in your AKS cluster. It's a key metric for evaluating the cluster's capacity and workload distribution.
    - Used Disk Percentage: Monitoring disk usage is critical to prevent storage-related issues. This chart helps you track how much disk space is being utilised.
