@@ -167,6 +167,28 @@ An alert rule has been created to trigger an alarm when the used disk space in t
 4. Adjust Alert Rules for CPU and Memory
 Alert rules have been fine-tuned to trigger alarms when CPU usage and memory working set percentage in the AKS cluster exceed 80%. Recognising the critical role of CPU and memory as pivotal resources in the AKS cluster, these adjusted alert rules serve as a proactive measure to notify promptly when these resources approach critical levels. The 80% threshold is strategically chosen to ensure early detection, allowing for timely interventions to prevent decreased application performance. This configuration aims to strike a balance between resource optimisation and responsiveness, ensuring that potential issues with CPU and memory utilisation are promptly identified and addressed.
 
+### AKS Integration with Azure Key Vault for Secrets Management
+
+The security of the application was significantly enhanced by eliminating hardcoded credentials within the code. The primary focus was on integrating Azure Key Vault, a secure and scalable secrets management service, into our application. The process involved creating, managing, and securely retrieving sensitive information using Key Vault, along with enabling managed identity for the AKS cluster to facilitate secure interaction with Key Vault.
+
+1. Creating Azure Key Vault
+   - Initiated the process by creating an Azure Key Vault. This vault serves as a secure repository for storing sensitive information, preventing the exposure of credentials within the application code.
+2. Assigning Key Vault Administrator Role
+   - To ensure proper management of secrets within the Key Vault, we assigned the Key Vault Administrator role to our Microsoft Azure ID user. This step granted the necessary permissions to efficiently handle secrets in the Key Vault.
+3. Creating Secrets in Key Vault
+   - Four crucial secrets, including the server name, server username, server password, and the database name, were created within the Key Vault. 
+4. Enabling Managed Identity for AKS Cluster
+   - To facilitate secure authentication and interaction between the AKS cluster and Key Vault, managed identity was enabled for the AKS cluster. This step establishes a trust relationship between the AKS cluster and Key Vault.
+5. Assigning Key Vault Secrets Officer Role
+   - To empower the managed identity associated with the AKS cluster, the Key Vault Secrets Officer role was assigned. This role enables the retrieval and management of secrets from the Key Vault, ensuring the AKS cluster can securely access the required credentials.
+6. Integrating Azure Identity and Key Vault Libraries into Python Code
+   - With the foundational configurations in place, we seamlessly integrated the Azure Identity and Azure Key Vault libraries into the Python application code. This integration facilitates secure communication with Azure Key Vault, and the code was modified to use managed identity credentials. Additionally, the requirements file for the Docker image was updated to include the newly required libraries, ensuring a comprehensive and self-contained deployment.
+7. Local Testing and Deployment to AKS Cluster
+   - Extensive local testing was conducted to ensure seamless integration with Azure Key Vault. The application was verified to securely retrieve and utilise database connection details from Key Vault using managed identity credentials. Subsequently, the modified application was deployed to the AKS cluster using the established Azure DevOps CI/CD pipeline. End-to-end testing within the AKS environment validated the functionality of the application, showcasing secure access to Key Vault secrets directly from the Azure DevOps CI/CD pipeline.
+
+This task marks a pivotal achievement in fortifying the security posture of our application. By adopting best practices in secrets management and integrating with Azure Key Vault, we have significantly reduced the security risks associated with hardcoded credentials. The seamless deployment process through Azure DevOps ensures a robust and secure application environment.
+
+
 
 ### Prerequisites
 
