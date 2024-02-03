@@ -199,7 +199,7 @@ The security of the application was significantly enhanced by eliminating hardco
 
 This task marks a pivotal achievement in fortifying the security posture of our application. By adopting best practices in secrets management and integrating with Azure Key Vault, we have significantly reduced the security risks associated with hardcoded credentials. The seamless deployment process through Azure DevOps ensures a robust and secure application environment.
 
-
+![DevOps Pipeline Architecture](uml.png)
 
 ### Prerequisites
 
