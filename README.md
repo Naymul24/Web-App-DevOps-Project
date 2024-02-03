@@ -111,7 +111,7 @@ To do this, the infrastruture setup had to be set, which ensured the Kubernetes 
 6. A .gitignore file was created to add the resultant state file to avoid exposing any secrets.
 
 ### Kubernetes Deployment to AKS
-Now that the infrastructure is in place, the containerised application can be deployed onto Kubernetes by following these instructions:
+Rolling Deployment strategy was chosen to be used. This strategy ensures zero-downtime updates by gradually replacing instances of the previous version with the new one. Kubernetes automatically manages the transition, minimizing disruptions and ensuring a smooth user experience. Now that the infrastructure is in place, the containerised application can be deployed onto Kubernetes by following these instructions:
 1. A Kubernetes manifest file was created, named application-manifest.yaml. Inside this file the necessary Deployment resource was defined, which will help deploy the containerised web application onto the Terraform-provisioned AKS cluster. The manifest should include the following:
    - Define a Deployment named flask-app-deployment that acts as a central reference for managing the containerised application.
    - Specify that the application should concurrently run on two replicas within the AKS cluster, allowing for scalability and high availability.
@@ -125,7 +125,12 @@ Now that the infrastructure is in place, the containerised application can be de
    - Ensure that the selector matches the labels (app: flask-app) of the previously defined pods in the Deployment manifest. This alignment guarantees that the traffic is efficiently directed to the appropriate pods, maintaining seamless internal communication within the AKS cluster.
    - Configure the service to use TCP protocol on port 80 for internal communication within the cluster. The targetPort should be set to 5000, which corresponds to the port exposed by your container.
    - Set the service type to ClusterIP, designating it as an internal service within the AKS cluster
-3. 
+3. Deploying the Kubernetes manifest. 
+   - The following command was used to deploy the manifest 'kubectl apply -f nginx-deployment-v1.yaml'
+   - Check the status of the deployment and pods to ensure the initial version is running. To do this use the follwing commands: 'kubectl get deployment' and 'kubectl get pods'. 
+4. Validating Deployments on AKS by port forwarding
+   - After confirming the health of pods and services, the following command was used to initiate port forwarding for the specific pod: 'kubectl port-forward <pod-name> 5000:5000'. With port forwarding established, the web application hosted on the AKS cluster becomes accessible locally at http://127.0.0.1:5000.
+   - The functionality of the web application was thoroughly tested to ensure the app was working. 
 ### Prerequisites
 
 For the application to succesfully run, you need to install the following packages:
