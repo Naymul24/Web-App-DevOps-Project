@@ -66,6 +66,8 @@ The initial implementation involved the addition of delivery columns to enhance 
 
 The app.py was modified alongside the orders.html file to incorporate a new feature – the addition of a delivery date information column to the application. The changes were made to enhance the functionality of the application and provide users with valuable information about delivery timelines. Now the company can also monitor the dates the deliveries have been made and ensure fulfilment.
 
+![Delivery date column](delivery-date-column.png)
+
 *Developers' Guide:*
 - Adding the Delivery Column
 1. Create a new feature branch to implement the additional coding. This branch isolates the code changes required to the include the delivery date column. Ensure all following steps are tracked via git
