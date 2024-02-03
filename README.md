@@ -131,6 +131,24 @@ Rolling Deployment strategy was chosen to be used. This strategy ensures zero-do
 4. Validating Deployments on AKS by port forwarding
    - After confirming the health of pods and services, the following command was used to initiate port forwarding for the specific pod: 'kubectl port-forward <pod-name> 5000:5000'. With port forwarding established, the web application hosted on the AKS cluster becomes accessible locally at http://127.0.0.1:5000.
    - The functionality of the web application was thoroughly tested to ensure the app was working. 
+
+
+## Configuration of CI/CD Pipeline
+Our CI/CD pipeline automates the deployment of the application, ensuring an efficient and reliable development workflow. The process encompasses containerisation, Docker image creation, release to Docker Hub, and deployment to the Kubernetes cluster on AKS. Below are the key steps involved in configuring and using the CI/CD pipeline with Azure DevOps.
+
+### CI/CD Pipeline with Azure DevOps
+Azure DevOps was used to automate the deployment of the application. The pipeline both automates the containerisation and deployment process, such that every time a new feature is added to the application, it will trigger the automatic build of an updated Docker Image, its release to Docker hub, and the deployment of the updated containers to the Kubernetes cluster. The following steps were taken for the CI/CD pipeline build:
+1. A new Azure DevOps project was created, serving as the foundation for our pipeline setup. This was done by logging into Azure DevOps with the associated email account.
+2. For efficient version control, GitHub was setup to be the source repository, where our application code resides. Using the Starter Pipeline template, the pipeline setup was initated, laying the groundwork for subsequent customisation.
+3. To seamlessly integrate our CI/CD pipeline with Docker Hub, a service connection was established. This involved creating a personal access token on Docker Hub, configuring an Azure DevOps service connection, and verifying its successful setup.
+4. The pipeline was configured to build and push the Docker image to Docker Hub automatically upon main branch pushes. A Docker task with the 'buildandPush' command facilitated this process. The CI/CD pipeline executed successfully, allowing local testing of the newly created Docker image.
+5. Ensuring secure linkage between the CI/CD pipeline and the AKS cluster, AKS service connection was created and configured in Azure DevOps. This connection was pivotal for effective deployments and management.
+6. The CI/CD pipeline configuration was modified to include the Deploy to Kubernetes task, leveraging the deployment manifest in the application repository. The ASK connection established earlier facilitated the automatic deployment of the application to the AKS cluster.
+7. The functionality of the CI/CD pipeline was rigorously tested and validated. Pod status within the cluster was monitored to confirm correct creation. To secure access to the application running on AKS, port forwarding via 'kubectl' was initiated. Testing ensued, ensuring the application operated seamlessly, validating the effectiveness of the CI/CD pipeline.
+
+
+
+
 ### Prerequisites
 
 For the application to succesfully run, you need to install the following packages:
