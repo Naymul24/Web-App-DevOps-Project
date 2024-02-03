@@ -205,10 +205,14 @@ This task marks a pivotal achievement in fortifying the security posture of our 
 
 For the application to succesfully run, you need to install the following packages:
 
+1. Python Packages:
 - flask (version 2.2.2)
 - pyodbc (version 4.0.39)
 - SQLAlchemy (version 2.0.21)
 - werkzeug (version 2.2.3)
+
+2. Azure Services:
+- Azure Key Vault: Set up an Azure Key Vault to securely store sensitive information used by the application.
 
 ### Usage
 
