@@ -5,7 +5,11 @@ Welcome to the Web App DevOps Project repo! This application allows you to effic
 ## Table of Contents
 
 - [Features](#features)
-- [Getting Started](#getting-started)
+- [Web Application Build and Containerisation](https://github.com/Naymul24/Web-App-DevOps-Project/blob/main/README.md#web-application-build-and-containerisation)
+   - [Additional Features](https://github.com/Naymul24/Web-App-DevOps-Project/blob/main/README.md#additional-features)
+   - [Containerisation with Docker](https://github.com/Naymul24/Web-App-DevOps-Project/blob/main/README.md#containerisation-with-docker)
+- [Deploying Containerised Application onto a Kubernetes Cluster](https://github.com/Naymul24/Web-App-DevOps-Project/blob/main/README.md#deploying-containerised-application-onto-a-kubernetes-cluster)
+   - [Defining Network Services with IaC](https://github.com/Naymul24/Web-App-DevOps-Project/blob/main/README.md#defining-network-services-with-iac)
 - [Technology Stack](#technology-stack)
 - [Contributors](#contributors)
 - [License](#license)
