@@ -137,6 +137,7 @@ Rolling Deployment strategy was chosen to be used. This strategy ensures zero-do
 Our CI/CD pipeline automates the deployment of the application, ensuring an efficient and reliable development workflow. The process encompasses containerisation, Docker image creation, release to Docker Hub, and deployment to the Kubernetes cluster on AKS. Below are the key steps involved in configuring and using the CI/CD pipeline with Azure DevOps.
 
 ### CI/CD Pipeline with Azure DevOps
+
 Azure DevOps was used to automate the deployment of the application. The pipeline both automates the containerisation and deployment process, such that every time a new feature is added to the application, it will trigger the automatic build of an updated Docker Image, its release to Docker hub, and the deployment of the updated containers to the Kubernetes cluster. The following steps were taken for the CI/CD pipeline build:
 1. A new Azure DevOps project was created, serving as the foundation for our pipeline setup. This was done by logging into Azure DevOps with the associated email account.
 2. For efficient version control, GitHub was setup to be the source repository, where our application code resides. Using the Starter Pipeline template, the pipeline setup was initated, laying the groundwork for subsequent customisation.
@@ -148,7 +149,23 @@ Azure DevOps was used to automate the deployment of the application. The pipelin
 
 Our CI/CD pipeline is a robust and automated solution that enhances the development and deployment workflow. The documentation above outlines the key configurations, connections, and validation steps performed to ensure the reliability of our continuous integration and continuous deployment process.
 
+### AKS Cluster Monitoring
 
+As part of the DevOps pipeline setup for our company's application, the responsibility was assigned to ensure effective monitoring and alerting for the AKS cluster. This includes enabling Container Insights, configuring Metrics Explorer charts, setting up Log Analytics for specific logs, and establishing alert rules to proactively address potential issues.
+1. Enable Container Insights
+   - Managed identity was enabled on the AKS cluster.
+   - Necessary permissions for the Service Principal were configured.
+   - Container Insights was enabled on the cluster.
+2. Metrics Explorer Charts
+The following charts were created: 
+   - Average Node CPU Usage: This chart allows you to track the CPU usage of your AKS cluster's nodes. Monitoring CPU usage helps ensure efficient resource allocation and detect potential performance issues.
+   - Average Pod Count: This chart displays the average number of pods running in your AKS cluster. It's a key metric for evaluating the cluster's capacity and workload distribution.
+   - Used Disk Percentage: Monitoring disk usage is critical to prevent storage-related issues. This chart helps you track how much disk space is being utilised.
+   - Bytes Read and Written per Second: Monitoring data I/O is crucial for identifying potential performance bottlenecks. This chart provides insights into data transfer rates.
+3. Alert Rule for Used Disk Percentage
+An alert rule has been created to trigger an alarm when the used disk space in the AKS cluster surpasses 90%. This proactive measure is crucial for the early detection and resolution of potential disk-related issues that may result in performance degradation and service interruptions. The alert is configured to check the disk space every 5 minutes, ensuring timely monitoring, with a loopback period of 15 minutes to capture sustained trends. I have attached the associated email address as the notification forwarding port. 
+4. Adjust Alert Rules for CPU and Memory
+Alert rules have been fine-tuned to trigger alarms when CPU usage and memory working set percentage in the AKS cluster exceed 80%. Recognising the critical role of CPU and memory as pivotal resources in the AKS cluster, these adjusted alert rules serve as a proactive measure to notify promptly when these resources approach critical levels. The 80% threshold is strategically chosen to ensure early detection, allowing for timely interventions to prevent decreased application performance. This configuration aims to strike a balance between resource optimisation and responsiveness, ensuring that potential issues with CPU and memory utilisation are promptly identified and addressed.
 
 
 ### Prerequisites
