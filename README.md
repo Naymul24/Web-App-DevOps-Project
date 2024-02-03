@@ -1,6 +1,25 @@
 # Web-App-DevOps-Project
 
-Welcome to the Web App DevOps Project repo! This application allows you to efficiently manage and track orders for a potential business. It provides an intuitive user interface for viewing existing orders and adding new ones.
+Welcome to the Web App DevOps Project repository! This project showcases the seamless integration of DevOps practices to enhance the development, deployment, and management of a web application designed for order management. The application empowers users to efficiently track and manage orders, providing a user-friendly interface for both viewing existing orders and adding new ones.
+
+## Key Features:
+
+Order Management:
+- The application facilitates the organised tracking and management of client orders, ensuring a streamlined process for businesses.
+DevOps Integration:
+- Leveraging industry best practices, the project incorporates robust DevOps methodologies to automate various stages of development, testing, and deployment.
+Containerisation with Docker:
+- Utilising Docker, the application is containerised, enhancing portability, scalability, and consistency across different environments.
+Azure Kubernetes Service (AKS) Deployment:
+- The project includes the setup and deployment of an Azure Kubernetes Service (AKS) cluster, providing a scalable and reliable environment for hosting the application.
+Integration with Azure Key Vault:
+- Sensitive credentials are securely managed using Azure Key Vault, enhancing security and ensuring best practices for credential management.
+Azure DevOps CI/CD Pipeline:
+- Automation is achieved through Azure DevOps, orchestrating continuous integration and continuous deployment (CI/CD) pipelines for efficient and reliable releases.
+Monitoring with Azure Container Insights:
+- The AKS cluster is monitored using Azure Container Insights, enabling real-time performance and diagnostic data collection for effective troubleshooting.
+Secrets Management with Azure Key Vault:
+- Sensitive data is securely stored in Azure Key Vault, and the application is configured to retrieve credentials securely during runtime.
 
 ## Table of Contents
 
@@ -63,10 +82,10 @@ While the feature was reverted due to specific considerations, the documentation
 
 ### Containerisation with Docker
 
-
 This involved containerizing the application using Docker. This process facilitates seamless deployment and scalability by encapsulating the application and its dependencies into isolated containers.
 
 **Containerisation Process:**
+
 - **Dockerfile Creation:**
 1. Dockerfile was created containing all the commands the user requires to call on the command line to assemble an image including for pulling necessary base images, setting up the working directory, and installing dependencies.
 - **Docker Build:**
@@ -81,6 +100,7 @@ To deploy the application onto a Kubernetes cluster, we have decided to implemen
 To do this, the infrastruture setup had to be set, which ensured the Kubernetes cluster's seamless operation and secure communication. The following steps were taken:
 
 ### Defining Network Services with IaC
+
 1. The Terraform project and modules were created to organise infrastructure code.
 2. The initial set of Terraform files for networking services were developed including the main.tf, variable.tf and output.tf files inside the netwworking module directory.
 3. First the 3 input variables were defined in the variable.tf files. These included the resource group name, location and a virtual network address space.
@@ -98,6 +118,7 @@ To do this, the infrastruture setup had to be set, which ensured the Kubernetes 
 
 
 ### Defining an AKS Cluster with IaC
+
 1. The Terraform files for the aks cluster were developed including the main.tf, variable.tf and output.tf files inside the aks-cluster module directory.
 2. Firstly, 6 input variables were defined in the variable.tf files. These included the aks cluster name, cluster location, DNS prefix, the Kubernetes version, the client id and the client secret. Additionally, the output variables from the networking module were defined as the input varibales for the cluster.
    - A aks_cluster_name variable that represents the name of the AKS cluster you wish to create
@@ -114,6 +135,7 @@ To do this, the infrastruture setup had to be set, which ensured the Kubernetes 
 5. The aks cluster module was then intialised.
 
 ### Creating an AKS Cluster with IaC
+
 1. A main.tf file was made in the root terraform directory. Within this file the Azure provider block was provided to enable authentication to Azure using your service principal credentials.
 2. In the variable.tf file, the client_id and client_secret arguments were defined.
 3. The networking module was then integrated into the project's main configuration. This integration will ensure that the networking resources previously defined in their respective module are included, and therefore accessible in the main project.
@@ -122,6 +144,7 @@ To do this, the infrastruture setup had to be set, which ensured the Kubernetes 
 6. A .gitignore file was created to add the resultant state file to avoid exposing any secrets.
 
 ### Kubernetes Deployment to AKS
+
 Rolling Deployment strategy was chosen to be used. This strategy ensures zero-downtime updates by gradually replacing instances of the previous version with the new one. Kubernetes automatically manages the transition, minimizing disruptions and ensuring a smooth user experience. Now that the infrastructure is in place, the containerised application can be deployed onto Kubernetes by following these instructions:
 1. A Kubernetes manifest file was created, named application-manifest.yaml. Inside this file the necessary Deployment resource was defined, which will help deploy the containerised web application onto the Terraform-provisioned AKS cluster. The manifest should include the following:
    - Define a Deployment named flask-app-deployment that acts as a central reference for managing the containerised application.
@@ -145,6 +168,7 @@ Rolling Deployment strategy was chosen to be used. This strategy ensures zero-do
 
 
 ## Configuration of CI/CD Pipeline
+
 Our CI/CD pipeline automates the deployment of the application, ensuring an efficient and reliable development workflow. The process encompasses containerisation, Docker image creation, release to Docker Hub, and deployment to the Kubernetes cluster on AKS. Below are the key steps involved in configuring and using the CI/CD pipeline with Azure DevOps.
 
 ### CI/CD Pipeline with Azure DevOps
@@ -225,6 +249,7 @@ To run the application, you simply need to run the `app.py` script in this repos
 
 2. **Add New Order Page:** Click on the "Add New Order" tab to access the order form. Complete all required fields and ensure that your entries meet the specified criteria.
 
+
 ## Technology Stack
 
 - **Backend:** Flask is used to build the backend of the application, handling routing, data processing, and interactions with the database.
@@ -232,6 +257,7 @@ To run the application, you simply need to run the `app.py` script in this repos
 - **Frontend:** The user interface is designed using HTML, CSS, and JavaScript to ensure a smooth and intuitive user experience.
 
 - **Database:** The application employs an Azure SQL Database as its database system to store order-related data.
+
 
 ## Contributors 
 
